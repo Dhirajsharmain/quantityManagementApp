@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import {Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {Card} from 'react-native-elements';
-import lengthStyles from '../css/temperatureCss';
+import lengthStyles from '../css/lengthCss';
 
-const LengthMeasurement = (props) => {
+
+const LengthMeasurement = ({ navigation }) => {
     const [pickerValueFrom, selectedValueFrom] = useState(pickerValueFrom);
     const [pickerValueTo, selectedValueTo] = useState(pickerValueTo);
 
@@ -23,14 +24,14 @@ const LengthMeasurement = (props) => {
             </Card>
             
             <Card containerStyle={lengthStyles.cardStyle}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Temperature')}>
                 <Image source={require('../assets/hot-1.png')} style={lengthStyles.cardImg}/>
                 <Text numberOfLines={1} style={lengthStyles.cardText}>Temperature</Text>
             </TouchableOpacity>
             </Card>
 
             <Card containerStyle={lengthStyles.cardStyle}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Volume')}>
                 <Image source={require('../assets/beaker-1.png')} style={lengthStyles.cardImg} />
                 <Text numberOfLines={1} style={lengthStyles.cardText}>Volume</Text>
             </TouchableOpacity>

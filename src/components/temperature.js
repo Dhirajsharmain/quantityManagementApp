@@ -5,7 +5,7 @@ import {Card} from 'react-native-elements';
 import tempStyles from '../css/temperatureCss';
 
 
-const TempMeasurement = () => {
+const TempMeasurement = ({navigation}) => {
   const [pickerValueFrom, selectedValueFrom] = useState(pickerValueFrom);
   const [pickerValueTo, selectedValueTo] = useState(pickerValueTo);
 
@@ -16,7 +16,7 @@ const TempMeasurement = () => {
       <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch'}}>
 
         <Card containerStyle={tempStyles.cardStyle}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
             <Image source={require('../assets/scale-1.png')} style={tempStyles.cardImg}/>
             <Text numberOfLines={1} style={tempStyles.cardText}>Length</Text>
           </TouchableOpacity>
@@ -30,7 +30,7 @@ const TempMeasurement = () => {
         </Card>
 
         <Card containerStyle={tempStyles.cardStyle}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Volume')}>
             <Image source={require('../assets/beaker-1.png')} style={tempStyles.cardImg} />
             <Text numberOfLines={1} style={tempStyles.cardText}>Volume</Text>
           </TouchableOpacity>

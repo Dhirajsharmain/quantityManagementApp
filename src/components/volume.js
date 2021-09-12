@@ -5,7 +5,7 @@ import {Card} from 'react-native-elements';
 import volumeStyles from '../css/volumeCss';
 
 
-const VolumeMeasurement = () => {
+const VolumeMeasurement = ({navigation}) => {
   const [pickerValueFrom, selectedValueFrom] = useState(pickerValueFrom);
   const [pickerValueTo, selectedValueTo] = useState(pickerValueTo);
 
@@ -16,14 +16,14 @@ const VolumeMeasurement = () => {
       <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch'}}>
         
         <Card containerStyle={volumeStyles.cardStyle}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
             <Image source={require('../assets/scale-1.png')} style={volumeStyles.cardImg}/>
             <Text numberOfLines={1} style={volumeStyles.cardText}>Length</Text>
           </TouchableOpacity>
         </Card>
 
         <Card containerStyle={volumeStyles.cardStyle}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Temperature')}>
             <Image source={require('../assets/hot-1.png')} style={volumeStyles.cardImg}/>
             <Text numberOfLines={1} style={volumeStyles.cardText}>Temperature</Text>
           </TouchableOpacity>
