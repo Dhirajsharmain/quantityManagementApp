@@ -52,47 +52,51 @@ const LengthMeasurement = ({ navigation }) => {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'stretch',
-            width:'90%',
+            width:'85%',
             alignSelf:'center'
             }}>
-            <Card containerStyle={{borderRadius: 7, borderWidth: 1, width:'50%'}}>
-            <Text>From: {pickerValueFrom}</Text>
-            <TextInput
-                style={lengthStyles.input}
-                placeholder="From"
-                keyboardType="numeric"
-                onChangeText={userInput => setUserInput(userInput)}
-            />
+            <View style={{width:'50%', justifyContent: 'center', marginVertical:20, marginHorizontal:10}}>
+                <Text style={{marginBottom:5}}>From: {pickerValueFrom}</Text>
+                <Card containerStyle={{width:'100%', padding:0, margin:0}}>
+                    <TextInput
+                        style={lengthStyles.input}
+                        placeholder="From"
+                        keyboardType="numeric"
+                        onChangeText={userInput => setUserInput(userInput)}
+                    />
+                    <View style={lengthStyles.picker}>
+                        <Picker
+                            onValueChange={itemValue => selectedValueFrom(itemValue)}
+                            selectedValue={pickerValueFrom}>
 
-            <Picker
-                style={lengthStyles.picker}
-                onValueChange={itemValue => selectedValueFrom(itemValue)}
-                selectedValue={pickerValueFrom}>
+                            <Picker.Item label="mm" value="milliMeter" />
+                            <Picker.Item label="cm" value="centiMeter" />
+                            <Picker.Item label="m" value="meter" />
+                            <Picker.Item label="km" value="kiloMeter" />
 
-                <Picker.Item label="mm" value="milliMeter" />
-                <Picker.Item label="cm" value="centiMeter" />
-                <Picker.Item label="m" value="meter" />
-                <Picker.Item label="km" value="kiloMeter" />
+                        </Picker>
+                    </View>
+                </Card>
+            </View>
+            <View style={{width:'50%', justifyContent: 'center', marginVertical:20, marginHorizontal:10}}>
+                <Text style={{marginBottom:5}}>To: {pickerValueTo}</Text>
+                <Card containerStyle={{width:'100%', padding:0, margin:0}}>
+                    <TextInput style={lengthStyles.input}>{result}</TextInput>
 
-            </Picker>
-            </Card>
+                    <View style={lengthStyles.picker}>
+                        <Picker
+                            onValueChange={(itemValue) => {let output = calculateValue(itemValue); console.log(output); setOutput(output)}}
+                            selectedValue={pickerValueTo}>
 
-            <Card containerStyle={{borderRadius: 7, borderWidth: 1, width:'50%'}}>
-            <Text>To: {pickerValueTo}</Text>
-            <Text style={lengthStyles.input}>{result}</Text>
+                            <Picker.Item label="mm" value="milliMeter" />
+                            <Picker.Item label="cm" value="centiMeter" />
+                            <Picker.Item label="m" value="meter" />
+                            <Picker.Item label="km" value="kiloMeter" />
 
-            <Picker
-                style={lengthStyles.picker}
-                onValueChange={(itemValue) => {let output = calculateValue(itemValue); console.log(output); setOutput(output)}}
-                selectedValue={pickerValueTo}>
-
-                <Picker.Item label="mm" value="milliMeter" />
-                <Picker.Item label="cm" value="centiMeter" />
-                <Picker.Item label="m" value="meter" />
-                <Picker.Item label="km" value="kiloMeter" />
-
-            </Picker>
-            </Card>
+                        </Picker>
+                    </View>
+                </Card>
+            </View>
         </View>
     </ScrollView>
     );

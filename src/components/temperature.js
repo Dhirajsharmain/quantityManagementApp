@@ -45,34 +45,39 @@ const TempMeasurement = ({navigation}) => {
         </Card>
       </View>
 
-      <View style={{flexDirection: 'row',justifyContent: 'center',alignItems: 'stretch', width:'90%', alignSelf:'center' }}>
+      <View style={{flexDirection: 'row',justifyContent: 'center',alignItems: 'stretch', width:'85%', alignSelf:'center' }}>
+        <View style={{width:'50%', justifyContent: 'center',  marginVertical:20, marginHorizontal:10}}>
+          <Text style={{marginBottom:5}}>From: {pickerValueFrom}</Text>
+          <Card containerStyle={{width:'100%', padding:0, margin:0}}>
+            <TextInput style={tempStyles.input} placeholder="From" keyboardType="numeric" onChangeText={userInput => setUserInput(userInput)}/>
 
-        <Card containerStyle={{borderRadius:7, borderWidth: 1, width:'50%'}}>
-          <Text>From: {pickerValueFrom}</Text>
-          <TextInput style={tempStyles.input} placeholder="From" keyboardType="numeric" onChangeText={userInput => setUserInput(userInput)}/>
+            <View style= {tempStyles.picker}>
+              <Picker onValueChange={(itemValue) => selectedValueFrom(itemValue)} selectedValue={pickerValueFrom}>
 
-          <Picker style= {tempStyles.picker} onValueChange={(itemValue) => selectedValueFrom(itemValue)} selectedValue={pickerValueFrom}>
+                  <Picker.Item label="&#8451;" value="celsius" />
+                  <Picker.Item label="&#8457;" value="fahrenheit" />
+                  <Picker.Item label="&#xb0;K" value="kelvin" />
 
-              <Picker.Item label="&#8451;" value="celsius" />
-              <Picker.Item label="&#8457;" value="fahrenheit" />
-              <Picker.Item label="&#xb0;K" value="kelvin" />
+              </Picker>
+            </View>
 
-          </Picker>
+          </Card>
+        </View>
+        <View style={{width:'50%', justifyContent: 'center', marginVertical:20, marginHorizontal:10}}>
+          <Text style={{marginBottom:5}}>To: {pickerValueTo}</Text>
+          <Card containerStyle={{width:'100%', padding:0, margin:0}}>
+            <TextInput style={tempStyles.input} >{result}</TextInput>
 
-        </Card>
-
-        <Card containerStyle={{borderRadius:7, borderWidth: 1, width:'50%'}}>
-          <Text>To: {pickerValueTo}</Text>
-          <Text style={tempStyles.input} >{result}</Text>
-
-          <Picker style= {tempStyles.picker} onValueChange={itemValue => {let output = calculateTemperature(itemValue); console.log(output); setOutput(output)}} selectedValue = {pickerValueTo}>
-            
-              <Picker.Item label="&#8451;" value="celsius"/>
-              <Picker.Item label="&#8457;" value="fahrenheit"/>
-              <Picker.Item label="&#xb0;K" value="kelvin" />
-          </Picker>
-        
-        </Card>
+            <View style= {tempStyles.picker}>
+              <Picker onValueChange={itemValue => {let output = calculateTemperature(itemValue); console.log(output); setOutput(output)}} selectedValue = {pickerValueTo}>
+                
+                  <Picker.Item label="&#8451;" value="celsius"/>
+                  <Picker.Item label="&#8457;" value="fahrenheit"/>
+                  <Picker.Item label="&#xb0;K" value="kelvin" />
+              </Picker>
+            </View>
+          </Card>
+        </View>
       </View>
     </ScrollView>
   );

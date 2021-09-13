@@ -45,35 +45,42 @@ const VolumeMeasurement = ({navigation}) => {
         </Card>
       </View>
 
-      <View style={{flexDirection: 'row',justifyContent: 'center',alignItems: 'stretch', width:'90%', alignSelf:'center' }}>
+      <View style={{flexDirection: 'row',justifyContent: 'center',alignItems: 'stretch', width:'85%', alignSelf:'center' }}>
 
-        <Card containerStyle={{borderRadius:7, borderWidth: 1, width:'50%'}}>
-          <Text>From: {pickerValueFrom}</Text>
-          <TextInput style={volumeStyles.input} placeholder="From" keyboardType="numeric"  onChangeText={userInput => setUserInput(userInput)}/>
+        <View style={{width:'50%', justifyContent: 'center', marginVertical:20, marginHorizontal:10}}>
+            <Text style={{marginBottom:5}}>From: {pickerValueFrom}</Text>
+            <Card containerStyle={{width:'100%', padding:0, margin:0}}>
+              <TextInput style={volumeStyles.input} placeholder="From" keyboardType="numeric"  onChangeText={userInput => setUserInput(userInput)}/>
 
-          <Picker style= {volumeStyles.picker} onValueChange={(itemValue) => selectedValueFrom(itemValue)} selectedValue={pickerValueFrom}>
-            <Picker.Item label="milliLiter" value="milliLiter" />
-            <Picker.Item label="liter" value="liter" />
-            <Picker.Item label="cubicInch" value="cubicInch" />
-            <Picker.Item label="cubicFoot" value="cubicFoot" />
-            <Picker.Item label="cubicMeter" value="cubicMeter" />
-          </Picker>
+              <View style={volumeStyles.picker}>
+                <Picker onValueChange={(itemValue) => selectedValueFrom(itemValue)} selectedValue={pickerValueFrom}>
+                  <Picker.Item label="milliLiter" value="milliLiter" />
+                  <Picker.Item label="liter" value="liter" />
+                  <Picker.Item label="cubicInch" value="cubicInch" />
+                  <Picker.Item label="cubicFoot" value="cubicFoot" />
+                  <Picker.Item label="cubicMeter" value="cubicMeter" />
+              </Picker>
+              </View>
 
-        </Card>
+          </Card>
+        </View>
 
-        <Card containerStyle={{borderRadius:7, borderWidth: 1, width:'50%'}}>
-          <Text>To: {pickerValueTo}</Text>
-          <Text style={volumeStyles.input} >{result}</Text>
-
-          <Picker style= {volumeStyles.picker} onValueChange={itemValue => {let output = calculateVolume(itemValue); console.log(output); setOutput(output)}} selectedValue = {pickerValueTo}>
-            <Picker.Item label="milliLiter" value="milliLiter" />
-            <Picker.Item label="liter" value="liter" />
-            <Picker.Item label="cubicInch" value="cubicInch" />
-            <Picker.Item label="cubicFoot" value="cubicFoot" />
-            <Picker.Item label="cubicMeter" value="cubicMeter" />
-          </Picker>
-        
-        </Card>
+        <View style={{width:'50%', justifyContent: 'center', marginVertical:20, marginHorizontal:10}}>
+          <Text style={{marginBottom:5}}>To: {pickerValueTo}</Text>
+          <Card containerStyle={{width:'100%', padding:0, margin:0}}>
+            <TextInput style={volumeStyles.input} >{result}</TextInput>
+            <View style={volumeStyles.picker}>
+              <Picker onValueChange={itemValue => {let output = calculateVolume(itemValue); console.log(output); setOutput(output)}} selectedValue = {pickerValueTo}>
+                <Picker.Item label="milliLiter" value="milliLiter" />
+                <Picker.Item label="liter" value="liter" />
+                <Picker.Item label="cubicInch" value="cubicInch" />
+                <Picker.Item label="cubicFoot" value="cubicFoot" />
+                <Picker.Item label="cubicMeter" value="cubicMeter" />
+              </Picker>
+            </View>
+          
+          </Card>
+        </View>
       </View>
     </ScrollView>
   );

@@ -43,16 +43,13 @@ const lengthStyles = StyleSheet.create({
     height: 40,
     marginTop: 10,
     borderBottomWidth: 1,
-    borderRadius:7,
-    padding: 10,
+    paddingLeft: 10,
   },
 
   picker:{
     height: 40,
-    marginVertical: 10,
-    borderWidth: 1,
-    borderRadius:7,
-    borderColor:'red'
+    paddingVertical:25,
+    justifyContent:'center'
   }
 });
 
