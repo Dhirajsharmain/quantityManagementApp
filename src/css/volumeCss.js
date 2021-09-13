@@ -39,7 +39,8 @@ const volumeStyles = StyleSheet.create({
   },
   
   input: {
-    borderColor:'#a9a9a9',
+    borderColor:'#E7DCFE',
+    fontWeight:'bold',
     height: 40,
     marginTop: 10,
     borderBottomWidth: 1,
