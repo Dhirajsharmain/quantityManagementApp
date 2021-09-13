@@ -3,11 +3,20 @@ import {Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-
 import {Picker} from '@react-native-picker/picker';
 import {Card} from 'react-native-elements';
 import lengthStyles from '../css/lengthCss';
+import { measureLength } from "../services/quantityMeasurementBL";
 
 
 const LengthMeasurement = ({ navigation }) => {
     const [pickerValueFrom, selectedValueFrom] = useState(pickerValueFrom);
     const [pickerValueTo, selectedValueTo] = useState(pickerValueTo);
+    const [userInput, setUserInput] = useState('');
+    const [result, setOutput] = useState('');
+
+    const calculateValue = (pickerValueTo) => {
+            selectedValueTo(pickerValueTo);
+            return measureLength(userInput, pickerValueFrom, pickerValueTo);
+            // console.log(result, userInput);
+    }
 
     return (
 
@@ -52,6 +61,7 @@ const LengthMeasurement = ({ navigation }) => {
                 style={lengthStyles.input}
                 placeholder="From"
                 keyboardType="numeric"
+                onChangeText={userInput => setUserInput(userInput)}
             />
 
             <Picker
@@ -68,12 +78,12 @@ const LengthMeasurement = ({ navigation }) => {
             </Card>
 
             <Card containerStyle={{borderRadius: 7, borderWidth: 1, width:'50%'}}>
-            <Text>To:{pickerValueTo}</Text>
-            <Text style={lengthStyles.input}>Result:</Text>
+            <Text>To: {pickerValueTo}</Text>
+            <Text style={lengthStyles.input}>{result}</Text>
 
             <Picker
                 style={lengthStyles.picker}
-                onValueChange={itemValue => selectedValueTo(itemValue)}
+                onValueChange={(itemValue) => {let output = calculateValue(itemValue); console.log(output); setOutput(output)}}
                 selectedValue={pickerValueTo}>
 
                 <Picker.Item label="mm" value="milliMeter" />

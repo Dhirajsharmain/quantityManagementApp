@@ -50,8 +50,9 @@ const lengthStyles = StyleSheet.create({
   picker:{
     height: 40,
     marginVertical: 10,
-    borderWidth: 5,
+    borderWidth: 1,
     borderRadius:7,
+    borderColor:'red'
   }
 });
 

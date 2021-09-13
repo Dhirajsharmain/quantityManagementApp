@@ -35,9 +35,4 @@ const App =  () => {
   );
 };
 
-// const AppNavigator = createNativeStackNavigator({
-//   Home:{
-//     screen:TempMeasurement
-//   }
-// })
 export default App;
